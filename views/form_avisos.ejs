@@ -1,14 +1,61 @@
 <!-- PÁGINA DA CRIAÇÃO DOS AVISOS  -->
 
 <!-- incluindo as partições globais ao arquivo do formulario  -->
-<%- include('./partials/head', {title: "Vai Etim"}) %> 
+<%- include('./partials/head', {title: "Quadro de Avisos"}) %> 
 
   <body>
-    <div class="alert alert-primary"> 
-      <h1> 
-        <span class="material-icons">campaign</span> 
-        Form Cadastro</h1>
-    </div>
+    
+    <div class="container">
+      <br><br>
+
+      <a href="#"><i class="fas fa-long-arrow-alt-left"></i> Voltar</a> <br><br>
+
+      <% if (typeof msg !== 'undefined') { %>
+        <% if (msg.tipo === "Sucesso ") { %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> <i class="fas fa-check-circle"> </i><%= msg.tipo %> </strong> <%= msg.corpo %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% } %>
+
+        <% if (msg.tipo === "Erro ") { %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong> <i class="fas fa-exclamation-circle"></i> <%= msg.tipo %> </strong> <%= msg.corpo %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>    
+        <% } %>
+      <% } %>
+
+      
+      <br><br>
+      <div class="card shadow">
+        <div class="card-header"> 
+          <h2 class="card-title"> <i class="fas fa-calendar-plus"></i> Novo aviso </h2>
+        </div>     
+         <div class="card-body p-5">        
+          <form action="/avisos/novo" method="POST">
+            <div class="form-group">
+              <label for="titulo">Título</label>
+              <input id="titulo" name="titulo" placeholder="Digite o titulo do aviso" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="data">Data</label>
+              <input id="data" name="data" type="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="Digite o aviso aqui">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Digite o aviso aqui" cols="40" rows="5"
+                class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+              <button name="limpar" type="submit" class="btn btn-secondary">Limpar</button>
+              <button name="cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </form>      
+         </div> <!-- card-body-->
+      </div> <!-- card-->
+
+    </div> <!-- container-->
     
 <!-- incluindo as partições de scripts globais ao arquivo do formulario  -->
 <%- include('./partials/scripts_import') %> 
