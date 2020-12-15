@@ -5,10 +5,14 @@
 
   <body>
     
+<!-- incluindo as partições globais ao arquivo do formulario -->
+<%- include('./partials/navbar')  %> 
+
+
     <div class="container">
       <br><br>
 
-      <a href="#"><i class="fas fa-long-arrow-alt-left"></i> Voltar</a> <br><br>
+      <a href="#"> <i class="fas fa-long-arrow-alt-left"> </i> Voltar</a> <br><br>
 
       <% if (typeof msg !== 'undefined') { %>
         <% if (msg.tipo === "Sucesso ") { %>
@@ -30,7 +34,7 @@
       <br><br>
       <div class="card shadow">
         <div class="card-header"> 
-          <h2 class="card-title"> <i class="fas fa-calendar-plus"></i> Novo aviso </h2>
+          <h2 class="card-title"> <i class="fas fa-calendar-plus"> </i> Novo aviso </h2>
         </div>     
          <div class="card-body p-5">        
           <form action="/avisos/novo" method="POST">
@@ -47,7 +51,7 @@
               <textarea id="mensagem" name="mensagem" placeholder="Digite o aviso aqui" cols="40" rows="5"
                 class="form-control" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="buttonForm">
               <button name="limpar" type="submit" class="btn btn-secondary">Limpar</button>
               <button name="cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
