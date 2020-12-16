@@ -23,6 +23,16 @@ background: linear-gradient(51deg, rgba(60,104,199,1) 4%, rgba(163,168,251,1) 45
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.infoPerfil {
+  margin-left: 3%;
+}
+
+.infoPerfil .usuario {
+  font-weight: bold;
+}
+
+
+
 
 
 

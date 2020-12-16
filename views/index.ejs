@@ -1,0 +1,46 @@
+<!-- PÁGINA DA CRIAÇÃO DOS AVISOS  -->
+
+<!-- incluindo as partições globais ao arquivo do formulario  -->
+<%- include('./partials/head', {title: "Quadro de Avisos"}) %> 
+
+  <body>
+    
+<!-- incluindo as partições globais ao arquivo do formulario -->
+<%- include('./partials/navbar')  %> 
+
+    <div class="container">
+
+      <% avisos.forEach(aviso => { %>
+
+      <div class="card shadow mt-4">
+        <div class="card-header d-flex align-items-center justify-content-between"> 
+          <h2 class="card-title"> <i class="fas fa-user-clock"></i> <%= aviso.titulo %>  </h2>
+          <h3 class="lead"> <%= moment(aviso.data).format("DD/MM/YYYY") %>  </h3> 
+        </div>     
+
+         <div class="card-body p-5">   
+           <!-- Info perfil -->     
+           <div class="d-flex align-items-center">
+            <img src="img/perfil.png" class="img-thumbnaill rounded-circle" width="75">
+              <div class="infoPerfil"> 
+                <div class="usuario"> Lizandra Kelly de Lima</div>
+                <div class="text-secondary"> <%= moment(aviso.data, "YYYYMMDD").fromNow();  %>  </div>
+              </div> <!-- Info perfil-->
+            </div> <!-- Info perfil + Imagem-->
+           
+            <!-- Descrição-->
+            <div class="mt-4"> 
+              <%= aviso.mensagem %>
+            </div>
+         </div> <!-- card-body-->
+      </div> <!-- card-->
+    <% }) %> <!-- Fim do forEach-->
+
+    </div> <!-- container-->
+    
+<!-- incluindo as partições de scripts globais ao arquivo do formulario  -->
+<%- include('./partials/scripts_import') %> 
+
+   
+  </body>
+</html>
