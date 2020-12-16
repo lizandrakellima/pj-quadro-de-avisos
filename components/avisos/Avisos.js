@@ -13,9 +13,23 @@ function salvar(aviso){
     .then( _ =>{
       return {tipo: "Sucesso ", corpo: "Aviso cadastrado com sucesso!"}
     })
-    .catch(err =>{
-      return {tipo: "Erro ", corpo: "Erro: "+err}
+    .catch(erro =>{
+      return {tipo: "Erro ", corpo: "Erro: "+ erro}
     })
 }//fim do salvar
 
-module.exports = {salvar}
+/**
+ * Seleciona todos os avisos cadastrados
+ * @returns {object} Objeto com todos os avisos cadastrados ou
+ * uma mensagem de erro 
+ */
+
+function selecionarTodos(){
+  return db.select('*').from('avisos')
+    .then(avisos => {return avisos})  
+    .catch(erro =>{
+      return { tipo: "erro", corpo: "Erro: " + erro }
+    })
+}// fim do selecionarTodos
+
+module.exports = {salvar, selecionarTodos}
