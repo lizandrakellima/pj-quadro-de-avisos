@@ -1,3 +1,4 @@
+const { from } = require('../../knexfile.js')
 const db = require('../../knexfile.js')
 
 /**
@@ -32,4 +33,14 @@ function selecionarTodos(){
     })
 }// fim do selecionarTodos
 
-module.exports = {salvar, selecionarTodos}
+/**
+ * Função que exclui um avuiso do banco de dados
+ * @param {*} id Id do aviso
+ */
+
+function excluir(id){
+return db.del().from('avisos').where('ID_avisos',id)
+
+}
+
+module.exports = {salvar, selecionarTodos, excluir}

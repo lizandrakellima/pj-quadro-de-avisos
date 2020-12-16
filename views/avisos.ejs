@@ -1,7 +1,7 @@
 <!-- PÁGINA DA CONSULTA E MANIPULAÇÃO DOS AVISOS  -->
 
 <!-- incluindo as partições globais ao arquivo do formulario  -->
-<%- include('./partials/head', {title: "Quadro de Avisos"}) %> 
+<%- include('./partials/head', {title: "Meus Avisos"}) %> 
 
   <body>
     
@@ -43,7 +43,7 @@
                    <td><%= aviso.titulo %></td>
                    <td><%= moment(aviso.data).format("DD/MM/YYYY") %></td>
                    <td>
-                     <button class="btn btn-secondary">Excluir</button>
+                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#excluirModal" onclick="excluir(event,'<%= aviso.ID_avisos %>')">Excluir</button>
                      <button class="btn btn-primary">Alterar</button>
                    </td>
                  </tr>
@@ -56,10 +56,63 @@
       </div> <!-- card-->
 
     </div> <!-- container-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="excluirModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Tem certeza que deseja excluir esse aviso?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Título</th>
+                  <th scope="col">Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="modal-tr-body">
+                  <td>ID</td>
+                  <td>Título</td>
+                  <td>Data</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+            <form id="form-excluir" method="GET">
+            <button type="submit" class="btn btn-primary">Sim</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
     
 <!-- incluindo as partições de scripts globais ao arquivo do formulario  -->
 <%- include('./partials/scripts_import') %> 
 
+<!-- nosso script -->
+<script>
+  function excluir(event, id){
+    var tbBotoes = event.target.parentElement
+    var trAviso = tdBotoes.target.parentElement
+    var trModal = document.getElementById("modal-tr-body")
+
+    var formExcluir = document.getElementById("form-excluir")
+    formExcluir.action = "avisos/excluir/"+id
+
+    trModal.innerHTML = trAviso.innerHTML
+    trModal.removeChild(trModal.lastElementChild)
+  }
+</script>
    
   </body>
 </html>
