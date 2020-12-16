@@ -10,7 +10,7 @@ float: right;
 padding-top: 15px;
 }
 
-.gradient-yellow {
+.gradient-blue {
   background: rgb(60,104,199);
 background: linear-gradient(51deg, rgba(60,104,199,1) 4%, rgba(163,168,251,1) 45%);}
 
